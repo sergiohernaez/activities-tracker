@@ -4,15 +4,15 @@ import com.sergiohernaez.activitiesTracker.domain.Post;
 import com.sergiohernaez.activitiesTracker.infrastructure.mapper.PostMapper;
 import com.sergiohernaez.activitiesTracker.infrastructure.repository.PostRepository;
 import com.sergiohernaez.activitiesTracker.controller.dto.PostDTO;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Component
-@AllArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class PostService {
 
     private final PostRepository postRepository;
@@ -20,7 +20,7 @@ public class PostService {
 
     public List<PostDTO> getPosts() {
         //TODO
-        return postRepository.findAll().stream().map(post -> postMapper.postToDto(post)).toList();
+        return postRepository.findAll().stream().map(postMapper::sourceToDestination).toList();
     }
 
     public PostDTO getPost(Long postId) {
@@ -31,12 +31,9 @@ public class PostService {
     public Boolean addPost(PostDTO postDTO) {
         //TODO
         try {
-            if(Objects.isNull(postDTO.getId())) {
-                Post Post = postMapper.dtoToPost(postDTO);
-                postRepository.save(Post);
-                return true;
-            }
-            return false;
+            Post Post = postMapper.destinationToSource(postDTO);
+            postRepository.save(Post);
+            return true;
         } catch(Exception ex) {
             return false;
         }
@@ -45,14 +42,13 @@ public class PostService {
     public Boolean updatePost(PostDTO postDTO) {
         //TODO
         try {
-            Optional<Post> postOptional = postRepository.findById(postDTO.getId());
-            if(postOptional.isPresent()) {
-                postRepository.save(postMapper.dtoToPost(postDTO));
+            if(Objects.isNull(postDTO.getId())) {
+                Post Post = postMapper.destinationToSource(postDTO);
+                postRepository.save(Post);
                 return true;
             }
             return false;
-
-        } catch (Exception ex) {
+        } catch(Exception ex) {
             return false;
         }
     }

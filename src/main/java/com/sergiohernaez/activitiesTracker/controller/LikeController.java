@@ -1,8 +1,7 @@
 package com.sergiohernaez.activitiesTracker.controller;
 
-import com.sergiohernaez.activitiesTracker.controller.dto.PostDTO;
 import com.sergiohernaez.activitiesTracker.service.LikeService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LikeController {
 
     private final LikeService likeService;

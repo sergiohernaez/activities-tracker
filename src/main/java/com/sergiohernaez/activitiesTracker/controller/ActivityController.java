@@ -1,8 +1,8 @@
 package com.sergiohernaez.activitiesTracker.controller;
 
-import com.sergiohernaez.activitiesTracker.controller.dto.LogDTO;
-import com.sergiohernaez.activitiesTracker.service.LogService;
-import lombok.AllArgsConstructor;
+import com.sergiohernaez.activitiesTracker.controller.dto.ActivityDTO;
+import com.sergiohernaez.activitiesTracker.service.ActivityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
-public class LogController {
+@RequiredArgsConstructor
+public class ActivityController {
 
-    private final LogService logService;
+    private final ActivityService logService;
 
     @GetMapping("/log/{postId}/")
-    public List<LogDTO> getLogs(@PathVariable Long postId) {
+    public List<ActivityDTO> getLogs(@PathVariable Long postId) {
         return logService.getLogs(postId);
     }
 

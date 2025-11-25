@@ -1,20 +1,16 @@
 package com.sergiohernaez.activitiesTracker.service;
 
-import com.sergiohernaez.activitiesTracker.controller.dto.PostDTO;
-import com.sergiohernaez.activitiesTracker.domain.Post;
-import com.sergiohernaez.activitiesTracker.infrastructure.mapper.LikeMapper;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import com.sergiohernaez.activitiesTracker.infrastructure.repository.PostRepository;
+import com.sergiohernaez.activitiesTracker.infrastructure.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
-@Component
-@AllArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class LikeService {
 
-    private final LikeMapper likeMapper;
-
-    //TODO la tabla de relacion va a necesitar una entidad propia
+    private final UserRepository userRepository;
+    private final PostRepository postRepository;
 
     public Boolean addLike(String idPost, String idUser) {
         //TODO

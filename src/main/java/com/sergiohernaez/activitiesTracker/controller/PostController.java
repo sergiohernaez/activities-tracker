@@ -2,7 +2,7 @@ package com.sergiohernaez.activitiesTracker.controller;
 
 import com.sergiohernaez.activitiesTracker.service.PostService;
 import com.sergiohernaez.activitiesTracker.controller.dto.PostDTO;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PostController {
 
     private final PostService postService;
